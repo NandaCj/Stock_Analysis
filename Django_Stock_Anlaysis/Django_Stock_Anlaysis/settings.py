@@ -13,7 +13,9 @@ DB = env.db()
 ALLOWED_HOSTS = ['*']
 
 
-INSTALLED_APPS = [
+
+
+DEFAULT_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -21,6 +23,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+PROJECT_APPS = [
+    'stocks_detail_api.apps.StocksDetailApiConfig'
+]
+
+INSTALLED_APPS = DEFAULT_APPS + PROJECT_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
