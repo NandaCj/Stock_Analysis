@@ -28,7 +28,12 @@ PROJECT_APPS = [
     'stocks_detail_api.apps.StocksDetailApiConfig'
 ]
 
-INSTALLED_APPS = DEFAULT_APPS + PROJECT_APPS
+THIRD_PARTY_APPS = [
+    'rest_framework', # for api plugins
+    'drf_yasg', # for swagger plugins
+]
+
+INSTALLED_APPS = DEFAULT_APPS + PROJECT_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
