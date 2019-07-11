@@ -1,8 +1,9 @@
 from rest_framework import serializers
-from .models import BalanceSheetModel
+from .models import (   BalanceSheetModel,
+                        ShortBalanceSheetModel,)
 
-class BalanceSheetSerializer(serializers.Serializer):
+class BalanceSheetSerializer(serializers.ModelSerializer):
 
     class Meta :
-        Model = BalanceSheetModel
+        model = ShortBalanceSheetModel
         fields = '__all__'

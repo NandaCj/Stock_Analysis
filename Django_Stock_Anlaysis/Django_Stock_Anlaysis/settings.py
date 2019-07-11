@@ -1,3 +1,4 @@
+import logging
 import os
 import environ
 
@@ -62,6 +63,40 @@ TEMPLATES = [
         },
     },
 ]
+
+
+LOGGING = {
+    'version': 1,
+    'formatters': {
+          'verbose': {
+              'format': '{levelname} {asctime} {module} --> {message}',
+              'style': '{',
+          },
+      },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+        'file':{
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'formatter': 'verbose',
+            'maxBytes': 1024*1024*1, # 1MB
+            'backupCount': 3,
+            'filename': os.path.join(BASE_DIR, 'stocks_detail_api.log'),
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': logging.INFO
+        },
+        'django.request': {
+            'handlers': ['file'],
+            'level': logging.DEBUG
+    },
+    },
+}
 
 WSGI_APPLICATION = 'Django_Stock_Anlaysis.wsgi.application'
 

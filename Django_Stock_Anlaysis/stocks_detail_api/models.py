@@ -31,3 +31,19 @@ class BalanceSheetModel(models.Model):
         db_table = 'balance_sheet'
         ordering = ['year']
 
+class ShortBalanceSheetModel(models.Model):
+    year = models.DateField(db_column='year')
+    stock_name = models.CharField(db_column="stock_name", max_length=255, blank=False, null=False)
+    net_worth = models.DecimalField(db_column='net_worth', blank=False, null=False, max_digits=20, decimal_places=2)
+    total_liabilities = models.DecimalField(db_column='total_liabilities', blank=False, null=False, max_digits=20, decimal_places=2)
+    total_current_assests = models.DecimalField(db_column='total_current_assests', blank=False, null=False,
+                                                max_digits=20, decimal_places=2)
+    net_current_assets = models.DecimalField(db_column='net_current_assets', blank=False, null=False, max_digits=20,
+                                             decimal_places=2)
+    total_assets = models.DecimalField(db_column='total_assets', blank=False, null=False, max_digits=20,
+                                             decimal_places=2)
+
+    class Meta :
+        managed = True
+        db_table = 'short_balance_sheet'
+
