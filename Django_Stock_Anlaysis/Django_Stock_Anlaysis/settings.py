@@ -32,6 +32,7 @@ PROJECT_APPS = [
 THIRD_PARTY_APPS = [
     'rest_framework', # for api plugins
     'drf_yasg', # for swagger plugins
+    'django_filters', # for filtering in apis
 ]
 
 INSTALLED_APPS = DEFAULT_APPS + PROJECT_APPS + THIRD_PARTY_APPS
@@ -64,6 +65,11 @@ TEMPLATES = [
     },
 ]
 
+REST_FRAMEWORK = {
+
+        'DEFAULT_FILTER_BACKENDS': (
+            'django_filters.rest_framework.DjangoFilterBackend',),
+}
 
 LOGGING = {
     'version': 1,
