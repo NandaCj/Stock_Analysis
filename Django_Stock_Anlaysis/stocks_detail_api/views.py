@@ -6,7 +6,6 @@ from .models import (BalanceSheetModel, ShortBalanceSheetModel )
 from .serializers import (BalanceSheetSerializer, ShortBalanceSheetSerializer)
 
 
-
 class ShortBalanceSheetApi(generics.ListAPIView):
 
     serializer_class = ShortBalanceSheetSerializer

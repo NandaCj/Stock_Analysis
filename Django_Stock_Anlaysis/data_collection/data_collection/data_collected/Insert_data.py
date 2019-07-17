@@ -9,6 +9,13 @@ cursor = connection.cursor()
 class InsertData():
 
     def insert_balance_sheet_data(self):
+        """
+        insert into short_balance_sheet ("year", "stock_name", "net_worth", "total_liabilities",
+        "total_current_assests", "net_current_assets", "total_assets")
+        values ('2019-04-01', 'hdfc_bank', 149206.35, 1189432.40, 949922.81, 894814.52, 1189432.40)
+
+        :return:
+        """
         input_file = open(os.path.join(cur_dir, 'balance_sheet.txt'), 'r').readlines()
         table = 'short_balance_sheet'
         for line in input_file:

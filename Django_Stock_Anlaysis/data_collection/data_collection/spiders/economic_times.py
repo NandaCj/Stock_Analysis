@@ -3,14 +3,28 @@ import json
 import scrapy
 from lxml import html
 from datetime import date
+# from data_collection.et_codes import bank_nifty
 from decimal import Decimal
 balance_sheet_url = 'https://economictimes.indiatimes.com/hdfc-bank-ltd/balancesheet/companyid-{}.cms'
 balance_sheet_output_file = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'data_collected/balance_sheet.txt')
 
+bank_nifty = {  #'yes_bank' :'16552',
+                # 'icici_bank' :'9194',
+                # 'federal_bank' :'9211',
+                # 'pnb_bank' :'11585',
+                # 'rbl_bank' :'7750',
+                # 'idfc_bank' :'62245',
+                # 'bob_bank' : '12040',
+                # 'kotak_bank' : '12161',
+                # 'hdfc_bank' : '9195',
+                # 'axis_bank' : '9175',
+                'sbin' : '11984',
+                'indusind' : '9196'}
+
 class BalanceSheet(scrapy.Spider):
     name = 'balance_sheet'
-    stock_names = ['hdfc_bank', 'axis_bank', 'indusind' ,'sbi', 'pnb', 'bob']
-    company_ids = ['9195', '9175', '9196', '11984', '11585', '12040']
+    stock_names = list(bank_nifty.keys())
+    company_ids = list(bank_nifty.values())
     allowed_domains = ['economictimes.indiatimes.com']
     start_urls = [balance_sheet_url.format(company_id) for company_id in company_ids]
     i = 0
@@ -19,6 +33,7 @@ class BalanceSheet(scrapy.Spider):
         output_file = open(balance_sheet_output_file, 'a')
         print("I value ---", self.i, BalanceSheet.i)
         print(self.start_urls[self.i])
+        print(self.stock_names[self.i])
         tree = html.fromstring(response.text)
         Data = tree.xpath('//td/text()')
         # BalanceSheet1 = tree.xpath('//td[@class="textR"]/text()')
@@ -61,6 +76,7 @@ class BalanceSheet(scrapy.Spider):
             detail = {
                 'year':years[j-1],
                 'stock_name':self.stock_names[self.i],
+                # 'code':self.company_ids[self.i],
                 'net_worth': Data[NetWorth + j],
                 'total_liabilities' : Data[TotalLiabilities + j],
                 'total_current_assests':Data[TotalCurrentAssests + j],
