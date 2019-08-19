@@ -26,7 +26,8 @@ DEFAULT_APPS = [
 ]
 
 PROJECT_APPS = [
-    'stocks_detail_api.apps.StocksDetailApiConfig'
+    'stocks_detail_api.apps.StocksDetailApiConfig',
+    'stocks_detail_fe.apps.StocksDetailFeConfig',
 ]
 
 THIRD_PARTY_APPS = [

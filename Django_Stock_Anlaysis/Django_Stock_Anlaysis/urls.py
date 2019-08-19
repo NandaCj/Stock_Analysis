@@ -22,6 +22,7 @@ schema_view = get_schema_view(
 app_urls = [
     path('admin/', admin.site.urls),
     path('api/v1/',include(('stocks_detail_api.urls', 'stocks_detail_api'), namespace='stocks_detail_api' )),
+    path('',include(('stocks_detail_fe.urls', 'stocks_detail_fe'), namespace='stocks_detail_fe' )),
 
 ]
 
