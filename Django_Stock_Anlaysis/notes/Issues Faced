@@ -1,3 +1,7 @@
 in .env file dont leave space b/w variable = value , use : variable=value
 to have db changes we need to mention managed=True in the meta class data
 lookup_field and url kwarg name should be same
+
+//
+Commit check...
+//
